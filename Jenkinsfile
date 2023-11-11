@@ -13,10 +13,9 @@ pipeline {
         stage('checkout') {
             steps {
                  script{
-                        dir("terraform")
-                        {
-                            git "https://github.com/maxi20222/terraform.git"
-                        }
+                        
+                        git "https://github.com/maxi20222/terraform.git"
+                        
                     }
                 }
             }
