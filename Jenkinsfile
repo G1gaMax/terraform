@@ -21,7 +21,7 @@ pipeline {
                     }
                 }
             }
-
+        //Plan section
         stage('Plan') {
             steps {
                 sh 'pwd; terraform init'
