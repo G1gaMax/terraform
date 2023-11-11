@@ -22,14 +22,14 @@ pipeline {
                 }
             }
         //Plan section
-        stage('Plan') {
+        stage('plan') {
             steps {
                 sh 'pwd; terraform init'
                 sh "pwd; terraform plan -out tfplan"
                 sh 'pwd; terraform show -no-color tfplan > tfplan.txt'
             }
         }
-        stage('Approval') {
+        stage('approval') {
            when {
                not {
                    equals expected: true, actual: params.autoApprove
@@ -45,7 +45,7 @@ pipeline {
            }
        }
 
-        stage('Apply') {
+        stage('apply') {
             steps {
                 sh "pwd; terraform apply -input=false tfplan"
             }
