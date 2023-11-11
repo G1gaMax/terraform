@@ -13,18 +13,21 @@ pipeline {
         stage('checkout') {
             steps {
                  script{
+                    dir("terraform")
+                        {
                         
                         git "https://github.com/maxi20222/terraform.git"
                         
+                        }
                     }
                 }
             }
 
         stage('Plan') {
             steps {
-                sh 'pwd; terraform init'
-                sh "pwd; terraform plan -out tfplan"
-                sh 'pwd; terraform show -no-color tfplan > tfplan.txt'
+                sh 'pwd;cd terraform/ ; terraform init'
+                sh "pwd;cd terraform/ ; terraform plan -out tfplan"
+                sh 'pwd;cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
